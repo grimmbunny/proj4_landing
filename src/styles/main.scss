@@ -1,4 +1,5 @@
 @use 'variaveis';
+@use 'header';
 
 
 * { 
@@ -9,32 +10,30 @@
     list-style: none;
 }
 
+@mixin text($fontSize: 16px) {
+    font-size: $fontSize;
+    line-height: $fontSize + 10px;
+    color: variaveis.$corTextoPrincipal;
+}
+
+@mixin title($fontSize: 40px) {
+    @include text($fontSize);
+    color: variaveis.$corTextoSecundario;
+}
+
 
 body { 
     background-color: variaveis.$corDeFundo;
 
 }
 
-.text--big {
-    @include text(18px);
-
-    @media (max-width: 768px) {
-        @include text(15px);
-    }
-}
 
 .text {
-    @include text;
+    @include text(14px);
+    text-indent: 20px;
 
     @media (max-width: 768px) {
-        @include text(14px);
-    }
-}
-
-.title--big {
-    @include title(44px);
-    @media (max-width: 768px) {
-        @include title(26px);
+        text-indent: 10px;
     }
 }
 
@@ -43,28 +42,38 @@ body {
 
     @media (max-width: 768px) {
         @include title(24px);
+        text-align: center;
     }
 }
 
 .image-text-section {
-    padding: 5.6vw;
+    max-width: 80%;
+    padding: 4vw;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
+    margin: 0 auto;
 
     @media (max-width: 768px) {
         display: block;
+        max-width: 100%;
+        width: 90%;
+        padding: 2vw;
     }
 
     img {
-        max-width: 100%;
+        max-width: 70%;
     }
 
     &__text__container { 
-        padding: 0 2vw;
+        padding: 0 1vw;
 
         h2 { 
             margin-bottom: 24px;
+
+            @media (max-width: 768px) {
+                margin-top: 20px;
+            }
         }
 
     }
@@ -74,7 +83,12 @@ body {
         position: relative;
 
         img {
-            width: 100%;
+            width: 50%;
+
+            @media (max-width: 768px) {
+                width: 100%;
+                max-width: 100%;
+            }
         }
 
         &__text__container {
@@ -82,7 +96,7 @@ body {
             top: 0;
             left: 50%;
             height: 100%;
-            width: calc(50% - 5.6vw);
+            width: 50%;
             display: flex;
             flex-direction: column;
             justify-content: center;
